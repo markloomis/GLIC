@@ -70,6 +70,23 @@ void setup() {
   println();
   println("Presets provided by: Myrto, Saturn Kat, Letsglitchit, Vivi, NoNoNoNoNo, Pandy Chan, GenerateMe, Jay Di, José Irion Neto.");
   println();
+
+  String path = sketchPath;
+  java.io.File folder = new java.io.File(path);
+  String[] filenames = folder.list();
+  if (filenames != null) {
+    for (int j=0; j<filenames.length; j++) {
+      java.io.File selection = new java.io.File(path + '/' + filenames[j]);
+      fileSelected(selection);
+      if (img != null) {
+        for (int i=0; i<presets_count; i++) {
+          presets(i);
+          encode_button();
+          save_buffer(current_preset);
+        }
+      }
+    }
+  }
 }
 
 void draw() {
